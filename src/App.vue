@@ -45,6 +45,12 @@
               </v-expansion-panel>
             </v-expansion-panels>
 
+            <v-list>
+              <v-list-item v-for="(item, i) in listItems" :key="i">
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+
             <v-dialog v-model="dialog" max-width="400">
               <v-card>
                 <v-card-title>Dialog Title</v-card-title>
@@ -88,6 +94,7 @@ export default {
         answer: "Yes, we have a mobile app for...",
       },
     ],
+    listItems: [{ title: "Item 1" }, { title: "Item 2" }, { title: "Item 3" }],
     dialog: false,
   }),
   methods: {
