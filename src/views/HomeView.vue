@@ -1,44 +1,29 @@
+<!-- BlogPage.vue -->
 <template>
-  <div class="home">
-    <v-app>
-      <!-- Navbar -->
-      <v-app-bar app>
-        <!-- Navbar content -->
-      </v-app-bar>
-
-      <v-main>
-        <v-container fluid>
-          <v-row>
-            <!-- Sidebar -->
-            <v-col cols="3">
-              <v-sidebar app>
-                <!-- Sidebar content -->
-              </v-sidebar>
-            </v-col>
-
-            <!-- Page content -->
-            <v-col cols="9">
-              <v-card>
-                <!-- Page content -->
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-main>
-
-      <!-- Footer -->
-      <v-footer app>
-        <!-- Footer content -->
-      </v-footer>
-    </v-app>
+  <div>
+    <h1>Blog Page</h1>
+    <div v-for="post in posts" :key="post.id">
+      <v-card class="ma-5">
+        <v-card-title>{{ post.title }}</v-card-title>
+        <v-card-text>{{ post.content }}</v-card-text>
+        <v-card-actions>
+          <router-link :to="'/post/' + post.id">Read more</router-link>
+        </v-card-actions>
+      </v-card>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
-  name: "HomeView",
-  components: {},
+  data() {
+    return {
+      posts: [],
+    };
+  },
+  mounted() {
+    // Fetch posts from the store or API and populate the posts array
+    this.posts = this.$store.state.posts;
+  },
 };
 </script>
